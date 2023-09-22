@@ -7,4 +7,4 @@ db = create_engine('postgresql://sms_messages_user:leMmtPVKr4TFxdudP6hYBPWPSnKRt
 
 Session = sessionmaker(bind=db)
 
-db_session = scoped_session(Session)
+#db_session = scoped_session(Session)
