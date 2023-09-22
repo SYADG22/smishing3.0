@@ -6,7 +6,7 @@ import nltk
 import sklearn
 from nltk.stem.porter import PorterStemmer
 from .extensions import db
-from .models import SMSMessage
+from .models import SMSMessage, Base
 
 
 nltk.download('punkt')
