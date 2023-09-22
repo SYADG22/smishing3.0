@@ -62,9 +62,8 @@ def index():
 
 @main.route('/predict', methods=['POST'])
 def predict():
-     session = Session()
+    session = Session()
     if request.method == 'POST':
-        
         msg = request.form['textHere']
 
         transform_text(msg)
@@ -79,11 +78,9 @@ def predict():
         db_msg = 'smishing'
     else:
         db_msg = 'legit'
-     
-     new_message = SMSMessage(text=msg, result=db_msg)
-     session.add(new_message)
-     session.commit()
-     session.close()
+    new_message = SMSMessage(text=msg, result=db_msg)
+    db.session.add(new_message)
+    db.session.commit()
 
 
 #4. Display result on html page
