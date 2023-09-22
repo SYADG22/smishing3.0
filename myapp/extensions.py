@@ -1,4 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
-from .app import main
+from sqlalchemy import create_engine
+#from .app import main
 
-db = SQLAlchemy(main)
+db = create_engine()
