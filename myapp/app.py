@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for, jsonify, Blueprint
+from flask import Flask, render_template, request, url_for, jsonify, Blueprint, g
 import pickle  # or the appropriate library for loading your model
 import string
 from nltk.corpus import stopwords
@@ -15,8 +15,6 @@ nltk.download('stopwords')
 
 #app = Flask(__name__)
 main = Blueprint('main', __name__)
-
-session = Session()
 
 ps = PorterStemmer()
 
@@ -64,6 +62,7 @@ def index():
 
 @main.route('/predict', methods=['POST'])
 def predict():
+     g.db_session = db_session()
     if request.method == 'POST':
         
         msg = request.form['textHere']
@@ -80,7 +79,12 @@ def predict():
         db_msg = 'smishing'
     else:
         db_msg = 'legit'
-         
+     
+     new_message = SMSMessage(text=msg, result=db_msg)
+     session.add(new_message)
+     session.commit()
+     session.close()
+
 
 #4. Display result on html page
 
