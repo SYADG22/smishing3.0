@@ -83,7 +83,7 @@ def predict():
     new_message = SMSMessage(text=msg, result=db_msg)
     session.add(new_message)
     session.commit()
-    
+    session.close
 #4. Display result on html page
 
     if result == 1:
