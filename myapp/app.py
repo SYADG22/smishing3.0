@@ -62,7 +62,7 @@ def index():
 
 @main.route('/predict', methods=['POST'])
 def predict():
-     g.db_session = db_session()
+     session = Session()
     if request.method == 'POST':
         
         msg = request.form['textHere']
