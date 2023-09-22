@@ -80,8 +80,9 @@ def predict():
     else:
         db_msg = 'legit'
     new_message = SMSMessage(text=msg, result=db_msg)
-    db.session.add(new_message)
-    db.session.commit()
+    session.add(new_message)
+    session.commit()
+     session.close()
 
 
 #4. Display result on html page
