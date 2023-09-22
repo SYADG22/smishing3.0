@@ -105,7 +105,7 @@ def contact():
 @main.route('/about')
 def about():
     return render_template('about.html')
-
+'''
 @main.route('/detect', methods=['GET'])
 def detect():
     
@@ -132,7 +132,7 @@ def detect():
     db.session.commit()
     
     return jsonify({'result': result})
-
+'''
 
 if __name__ == '__main__':
     main.run(debug=True)
