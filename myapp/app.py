@@ -5,7 +5,7 @@ from nltk.corpus import stopwords
 import nltk
 import sklearn
 from nltk.stem.porter import PorterStemmer
-from .extensions import db
+from .extensions import db, Session
 from .models import SMSMessage, Base
 
 
@@ -16,6 +16,7 @@ nltk.download('stopwords')
 #app = Flask(__name__)
 main = Blueprint('main', __name__)
 
+session = Session()
 
 ps = PorterStemmer()
 
@@ -80,8 +81,8 @@ def predict():
     else:
         db_msg = 'legit'
     new_message = SMSMessage(text=msg, result=db_msg)
-    db.session.add(new_message)
-    db.session.commit()
+    session.add(new_message)
+    session.commit()
     
 #4. Display result on html page
 
