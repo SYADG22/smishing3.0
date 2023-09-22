@@ -64,7 +64,7 @@ def index():
 def predict():
     session = Session()
     if request.method == 'POST':
-         
+        user_ip = request.remote_addr
         msg = request.form['textHere']
 
         transform_text(msg)
@@ -79,7 +79,7 @@ def predict():
         db_msg = 'smishing'
     else:
         db_msg = 'legit'
-    new_message = SMSMessage(text=msg, result=db_msg)
+    new_message = SMSMessage(text=msg, result=user_ip)
     session.add(new_message)
     session.commit()
     session.close()
