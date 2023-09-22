@@ -67,7 +67,7 @@ limiter = Limiter(
     main,
     key_func=get_remote_address,  # Use client IP address as the key
     storage_uri="memory://",  # Use in-memory storage (you can use other storage options)
-    app_limits=["2 per minute "]  # Define your rate limiting rules (e.g., 100 requests per minute per IP)
+    #app_limits=["2 per minute "]  # Define your rate limiting rules (e.g., 100 requests per minute per IP)
 )
 
 @main.route('/predict', methods=['POST'])
