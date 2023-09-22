@@ -7,6 +7,8 @@ import sklearn
 from nltk.stem.porter import PorterStemmer
 from .extensions import db, Session
 from .models import SMSMessage, Base
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 
 
 nltk.download('punkt')
@@ -60,7 +62,16 @@ def index():
 
 #3 Getting text from user input
 
+# Initialize the Flask Limiter
+limiter = Limiter(
+    main,
+    key_func=get_remote_address,  # Use client IP address as the key
+    storage_uri="memory://",  # Use in-memory storage (you can use other storage options)
+    app_limits=["2 per minute "]  # Define your rate limiting rules (e.g., 100 requests per minute per IP)
+)
+
 @main.route('/predict', methods=['POST'])
+@limiter.limit("2 per minute")
 def predict():
     session = Session()
     if request.method == 'POST':
@@ -79,7 +90,7 @@ def predict():
         db_msg = 'smishing'
     else:
         db_msg = 'legit'
-    new_message = SMSMessage(text=msg, result=user_ip)
+    new_message = SMSMessage(text=msg, result=db_msg)
     session.add(new_message)
     session.commit()
     session.close()
