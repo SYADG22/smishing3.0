@@ -80,7 +80,8 @@ def predict():
         db_msg = 'smishing'
     else:
         db_msg = 'legit'
-         '''
+         
+     '''
     new_message = SMSMessage(text=msg, result=db_msg)
     session.add(new_message)
     session.commit()
