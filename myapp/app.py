@@ -64,6 +64,7 @@ def index():
 def predict():
     session = Session()
     if request.method == 'POST':
+         
         msg = request.form['textHere']
 
         transform_text(msg)
