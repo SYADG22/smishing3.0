@@ -132,11 +132,11 @@ def about():
 def detect():
     session = Session()
     data = request.get_json()
-    '''
+    
     if 'sms_message' not in data:
         return jsonify({'error': 'Missing "sms_message" field in the request'}), 400
-    '''
-    sms_message = data
+        
+    sms_message = data['sms_message']
     a = transform_text(sms_message)
 
     # Preprocess the SMS message
