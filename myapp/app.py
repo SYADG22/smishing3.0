@@ -49,7 +49,7 @@ def transform_text(text):
         y.append(ps.stem(i))
     
     return " ".join(y)  
-
+'''
 user_ip = request.remote_addr
 # Initialize the Flask Limiter
 limiter = Limiter(
@@ -58,7 +58,7 @@ limiter = Limiter(
     storage_uri="memory://",  # Use in-memory storage (you can use other storage options)
     #app_limits=["2 per minute "]  # Define your rate limiting rules (e.g., 100 requests per minute per IP)
 )
-
+'''
 #2 Loading model and vectorizer
 
 tfidf = pickle.load(open('vectorizer.pkl', 'rb'))
