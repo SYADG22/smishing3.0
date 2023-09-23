@@ -130,7 +130,7 @@ def about():
 
 @main.route('/detect', methods=['POST'])
 def detect():
-    
+    session = Session()
     data = request.get_json()
     if 'sms_message' not in data:
         return jsonify({'error': 'Missing "sms_message" field in the request'}), 400
@@ -152,6 +152,7 @@ def detect():
     new_message = SMSMessage(text=sms_message, result=result)
     session.add(new_message)
     session.commit()
+    session.close()
     
     return jsonify({'result': result})
 
