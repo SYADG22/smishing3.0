@@ -91,7 +91,7 @@ def predict():
         db_msg = 'smishing'
     else:
         db_msg = 'legit'
-    new_message = SMSMessage(text=msg, result=db_msg)
+    new_message = SMSMessage(text=data, result=db_msg)
     session.add(new_message)
     session.commit()
     session.close()
@@ -118,7 +118,7 @@ def contact():
 @main.route('/about')
 def about():
     return render_template('about.html')
-'''
+
 @main.route('/detect', methods=['GET'])
 def detect():
     
@@ -127,10 +127,10 @@ def detect():
         return jsonify({'error': 'Missing "sms_message" field in the request'}), 400
     
     sms_message = data
-    transform_text(sms_message)
+    a = transform_text(sms_message)
 
     # Preprocess the SMS message
-    preprocessed_sms = [sms_message]
+    preprocessed_sms = [a]
 
     vect = tfidf.transform(preprocessed_sms)
     
@@ -140,12 +140,11 @@ def detect():
     result = "Smishing" if prediction == 1 else "Legitimate"
     
     # Store the SMS message and result in the database
-    new_message = SMSMessage(text=preprocessed_sms, result=result)
-    db.session.add(new_message)
-    db.session.commit()
+    new_message = SMSMessage(text=sms_message, result=result)
+    session.add(new_message)
+    session.commit()
     
     return jsonify({'result': result})
-'''
 
 if __name__ == '__main__':
     main.run(debug=True)
