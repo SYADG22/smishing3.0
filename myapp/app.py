@@ -72,7 +72,7 @@ def index():
 
 #3 Getting text from user input
 @main.route('/predict', methods=['POST'])
-@limiter.limit("2 per minute")
+#@limiter.limit("2 per minute")
 def predict():
     session = Session()
     if request.method == 'POST':
