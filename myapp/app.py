@@ -128,7 +128,7 @@ def contact():
 def about():
     return render_template('about.html')
 
-@main.route('/detect', methods=['GET'])
+@main.route('/detect', methods=['POST'])
 def detect():
     
     data = request.get_json()
