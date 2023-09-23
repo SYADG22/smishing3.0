@@ -60,22 +60,23 @@ model = pickle.load(open('model.pkl', 'rb'))
 def index():
     return render_template('/index.html')
 
-#3 Getting text from user input
 
+user_ip = request.remote_addr
 # Initialize the Flask Limiter
 limiter = Limiter(
     main,
-    key_func=get_remote_address,  # Use client IP address as the key
+    key_func=user_ip #get_remote_address,  # Use client IP address as the key
     storage_uri="memory://",  # Use in-memory storage (you can use other storage options)
     #app_limits=["2 per minute "]  # Define your rate limiting rules (e.g., 100 requests per minute per IP)
 )
 
+#3 Getting text from user input
 @main.route('/predict', methods=['POST'])
 @limiter.limit("2 per minute")
 def predict():
     session = Session()
     if request.method == 'POST':
-        user_ip = request.remote_addr
+        
         msg = request.form['textHere']
 
         transform_text(msg)
