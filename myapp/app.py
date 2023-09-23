@@ -20,6 +20,15 @@ main = Blueprint('main', __name__)
 
 ps = PorterStemmer()
 
+chichewa_stopwords = [
+    "ndi",
+    "mu",
+    "a",
+    "kuti",
+    "ndine",
+    # Add more Chichewa stopwords here
+]
+
 def transform_text(text):
      #Lowercase
     text = text.lower()
@@ -38,7 +47,7 @@ def transform_text(text):
     
     #Removing stopwords
     for i in text:
-        if i not in stopwords.words('english') and i not in string.punctuation:
+        if i not in stopwords.words('english') and i not in string.punctuation and i not in chichewa_stopwords:
             y.append(i)
             
     text = y[:]
@@ -79,9 +88,9 @@ def predict():
         
         msg = request.form['textHere']
 
-        a = transform_text(msg)
+        preprocessed_text = transform_text(msg)
 
-        data = [a]
+        data = [preprocessed_text]
 
         vect = tfidf.transform(data)
 
