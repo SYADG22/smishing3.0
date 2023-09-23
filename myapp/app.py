@@ -132,9 +132,10 @@ def about():
 def detect():
     session = Session()
     data = request.get_json()
+    '''
     if 'sms_message' not in data:
         return jsonify({'error': 'Missing "sms_message" field in the request'}), 400
-    
+    '''
     sms_message = data
     a = transform_text(sms_message)
 
@@ -144,7 +145,7 @@ def detect():
     vect = tfidf.transform(preprocessed_sms)
     
     # Make predictions using the pre-trained model
-    prediction = model.predict(vect)[0]
+    prediction = model.predict(vect)
     
     result = "Smishing" if prediction == 1 else "Legitimate"
     
