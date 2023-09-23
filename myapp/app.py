@@ -47,7 +47,7 @@ def transform_text(text):
     
     #Removing stopwords
     for i in text:
-        if i not in stopwords.words('english') and i not in string.punctuation and i not in chichewa_stopwords:
+        if i not in stopwords.words('english') and i not in string.punctuation:
             y.append(i)
             
     text = y[:]
