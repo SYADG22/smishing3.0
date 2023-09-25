@@ -120,7 +120,7 @@
         document.getElementById("wordCountForm").addEventListener("submit", function(event) {
           //event.preventDefault(); // Prevent the form from submitting
     
-          const userInput = document.getElementById("sms").value.trim();
+          const userInput = document.getElementById("sms").value.trim().replace(/\s+/g, ' ');;
     
           // Check if the input contains more than 5 words
           if (userInput && userInput.split(" ").length > 5) {
