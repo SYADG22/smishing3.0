@@ -145,18 +145,20 @@
         let x = '{{data}}';
 
         if(x == "Legit"){
-            var label = "SMS is safe"
             elementToHide = document.getElementById("image")
             //elementToHide.style.display = "none";
             elementToHide.remove();
+            var label ="The SMS you entered has is safe"
+            
             document.getElementById("prediction").innerHTML = label;
             document.getElementById("button1").style.display="block";
         }
         else if(x == "Smishing"){
-            var label = "SMS is unsafe"
             elementToHide = document.getElementById("image")
             //elementToHide.style.display = "none";
             elementToHide.remove();
+            var label = "The SMS you entered has potential threat"
+           
             document.getElementById("prediction").innerHTML = label ;
             document.getElementById("button2").style.display="block";
         }
