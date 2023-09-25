@@ -92,7 +92,7 @@ def predict():
 
         data = [preprocessed_sms]
 
-        vect = tfidf.transform(data)
+        vect = tfidf.transform(data)[0]
 
         result = model.predict(vect)
     
