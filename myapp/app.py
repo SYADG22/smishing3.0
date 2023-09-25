@@ -88,9 +88,9 @@ def predict():
         
         msg = request.form['textHere']
 
-        transform_text(msg)
+        preprocessed_sms = transform_text(msg)
 
-        data = [msg]
+        data = [preprocessed_sms]
 
         vect = tfidf.transform(data)
 
