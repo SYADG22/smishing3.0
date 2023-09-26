@@ -128,6 +128,7 @@ def contact():
 def about():
     return render_template('about.html')
 
+#API
 @main.route('/detect', methods=['POST'])
 def detect():
     session = Session()
