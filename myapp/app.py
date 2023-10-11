@@ -148,7 +148,7 @@ def detect():
     # Make predictions using the pre-trained model
     prediction = model.predict(vect)
     
-    result = "Smishing" if prediction == 1 else "Legit"
+    result = "smishing" if prediction == 1 else "legit"
     
     # Store the SMS message and result in the database
     new_message = SMSMessage(text=sms_message, result=result)
