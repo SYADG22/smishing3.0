@@ -123,7 +123,7 @@
           const userInput = document.getElementById("sms").value.trim().replace(/\s+/g, ' ');;
     
           // Check if the input contains more than 5 words
-          if (userInput && userInput.split(" ").length > 5) {
+          if (userInput && userInput.split(" ").length >= 5) {
             //alert("You entered more than 5 words!");
           } else {
             $('#validationMessage').text("Enter a valid message. It must contain more than 5 words");
