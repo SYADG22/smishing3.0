@@ -83,7 +83,7 @@ def index():
 @main.route('/predict', methods=['POST'])
 #@limiter.limit("2 per minute")
 def predict():
-    session = Session()
+    #session = Session()
     if request.method == 'POST':
         
         msg = request.form['textHere']
@@ -100,11 +100,12 @@ def predict():
         db_msg = 'smishing'
     else:
         db_msg = 'legit'
+        '''
     new_message = SMSMessage(text=msg, result=db_msg)
     session.add(new_message)
     session.commit()
     session.close()
-
+'''
 
 #4. Display result on html page
 
@@ -131,7 +132,7 @@ def about():
 #API
 @main.route('/detect', methods=['POST'])
 def detect():
-    session = Session()
+    #session = Session()
     data = request.get_json()
     
     if 'sms_message' not in data:
@@ -149,13 +150,13 @@ def detect():
     prediction = model.predict(vect)
     
     result = "smishing" if prediction == 1 else "legit"
-    
+    '''
     # Store the SMS message and result in the database
     new_message = SMSMessage(text=sms_message, result=result)
     session.add(new_message)
     session.commit()
     session.close()
-    
+    '''
     return jsonify({'result': result})
 
 if __name__ == '__main__':
